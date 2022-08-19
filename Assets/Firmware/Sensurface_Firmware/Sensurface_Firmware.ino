@@ -12,7 +12,7 @@ Uduino uduino("U"); // Declare and name your object
 Muca muca;
 #define MAX_CALIBRATION_STEPS 5
 short currentCalibrationStep = 0;
-unsigned int calibrationGrid[NUM_ROWS * NUM_COLUMNS];
+unsigned int calibrationGrid[NUM_RX * NUM_TX];
 
 int numRx = 12;
 int numTx = 12;
@@ -179,7 +179,7 @@ void GetCalibratedData() {
 
 void CalibrationStep() {
   Serial.println("Calib");
-  for (int i = 0; i < NUM_ROWS * NUM_COLUMNS ; ++i) {
+  for (int i = 0; i < NUM_RX * NUM_TX ; ++i) {
     if (currentCalibrationStep == 0) calibrationGrid[i] = muca.grid[i]; // Copy array
     else calibrationGrid[i] = (calibrationGrid[i] + muca.grid[i]) / 2 ; // Get average
   }
